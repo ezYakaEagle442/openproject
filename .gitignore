@@ -1,3 +1,9 @@
+prv/*
+deploy/*
+cnf/*
+setenv.*
+.env
+
 # Compiled class file
 *.class
 
