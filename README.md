@@ -124,7 +124,8 @@ Check the API endpoint, ex: http://localhost:8080/api/v3/users
 ```sh
 # Set you USER and Password below
 export USR_PWD=""
-export API_ENDPOINT="http://localhost:8080/api/v3/users"
+export API_HOST="http://localhost:8080"
+export API_ENDPOINT_USR="$API_HOST/api/v3/users"
 export API_TOKEN=""
 
 # Read Excel file, format is: Département | NOM Prénom	| Rôle
@@ -175,7 +176,7 @@ EOF
         #echo ""
 
         # Send request and capture response
-        response=$(curl -X POST -k "$API_ENDPOINT" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$user_payload")
+        response=$(curl -X POST -k "$API_ENDPOINT_USR" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$user_payload")
         
         # Log user creation result
         # echo "Response for user $first_name $last_name: $response"
@@ -194,7 +195,6 @@ read [pagination doc](https://www.openproject.org/docs/api/collections/)
 ```sh
 
 # 1. Get ALL users
-export API_ENDPOINT="http://localhost:8080/api/v3"
 export MSP_GROUP_ID=220 # MSP
 export MSP_GROUP_NAME=MSP
 
@@ -204,14 +204,14 @@ export CLIENT_GROUP_NAME=Client
 pageSize=20
 
 # Fetch the first page of users
-response=$(curl -s -X GET -k "$API_ENDPOINT/users?offset=$offset&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
+response=$(curl -s -X GET -k "$API_ENDPOINT_USR?offset=$offset&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
 
 # Get total number of users from the response
 total_users=$(echo "$response" | jq -r '.total')
 echo "Total users: $total_users"
 
 # Calculate total pages
-total_pages=$(( (total_users + pageSize - 1) / pageSize ))
+total_pages=$(( (total_users + pageSize + 1) / pageSize ))
 echo "Total pages: $total_pages"
 
 # Collect all users from all pages
@@ -223,7 +223,7 @@ all_users=$(
             echo "Fetching page $i (offset=$i)" >&2
 
             # Fetch the page
-            response=$(curl -s -X GET -k "$API_ENDPOINT/users?offset=$i&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
+            response=$(curl -s -X GET -k "$API_ENDPOINT_USR?offset=$i&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
             
             # Check if we have elements in this page
             count=$(echo "$response" | jq -r '.count')
@@ -250,11 +250,11 @@ echo "Total users retrieved: $(echo "$all_users" | jq 'length')"
 
 # Extract MSP users (firstName starts with 'MSP')
 msp_usr_array=$(echo "$all_users" | jq '[.[] | select(.firstName | startswith("MSP"))]')
-echo "MSP users count: $(echo "$msp_usr_array" | jq 'length')" >&2
+echo "MSP users count: $(echo "$msp_usr_array" | jq 'length')"
 
 # Extract Client users (firstName does NOT start with 'MSP')
 client_usr_array=$(echo "$all_users" | jq '[.[] | select(.firstName | startswith("MSP") | not)]')
-echo "Client users count: $(echo "$client_usr_array" | jq 'length')" >&2
+echo "Client users count: $(echo "$client_usr_array" | jq 'length')"
 
 # Step 3: Add MSP users to MSP group
 msp_member_hrefs=$(echo "$msp_usr_array" | jq -r '.[]._links.self.href')
@@ -300,49 +300,6 @@ echo "$client_response" | jq '.' >&2
 
 ```
 
-## To remove Users from Group
-
-
-for user_id in $client_usr_array; do
-    # Add Client user to the Client group
-    patch_url="http://localhost:8080/api/v3/groups/$CLIENT_GROUP_ID"
-    payload=$(cat <<EOF
-{
-  "_links": {
-    "members": [
-      {
-        "href": "/api/v3/users/$user_id"
-      }
-    ]
-  }
-}
-EOF
-)
-
-
-    # Step 3: Execute PATCH request
-    response=$(curl -X PATCH -k "$patch_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$payload")
-
-    # Log response or handle errors
-    echo "Response for user ID $user_id added to group $MSP_GROUP_ID: $response"
-done
-
-
-        # Send request and capture response
-        response=$(curl -X PATCH -k "$API_ENDPOINT" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$payload")
-
-    done
-
-echo ""
-
-
-export PROJECT_ID=3
-```
-
-
-
-
-
 
 ## To remove Users from Group
 
@@ -355,12 +312,41 @@ echo "Group API GET URL: $grp_get_url"
 response=$(curl -s -X GET -k "$grp_get_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
 
 # Extract members using the correct jq syntax
-member_list=$(echo "$response" | jq -r '.members')
-# echo "$member_href"
+member_list=$(echo "$response" | jq '._embedded.members[]')
+echo "member_list="$member_list
 
-for user_id in $member_href; do
-    curl -X DELETE -k "$URL_ENDPOINT$user_id" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json'
-    #echo "User: $URL_ENDPOINT$user_id"
+for user in $member_list; do
+    user_id=$(echo "$member_list" | jq '.id')
 done
 
+patch_url="$API_ENDPOINT/groups/$MSP_GROUP_ID"
+echo "Patching MSP group: $patch_url"
+
+msp_payload=$(cat <<EOF
+{
+    "name": "$MSP_GROUP_NAME",
+    "_links": {
+        "members": []
+    }
+}
+EOF
+)
+
+data=$(echo "$msp_payload" | jq '.')
+echo "MSP Payload:" $data
+
+msp_response=$(curl -X PATCH -k "$patch_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$data")
+echo "Response for MSP group:" 
+echo "$msp_response" | jq '.'
+
+
+```
+
+
+## To rxxxx
+
+```sh
+
+
+export PROJECT_ID=3
 ```
