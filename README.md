@@ -154,7 +154,13 @@ while IFS=';' read -r first_name last_name; do
     # Check if names are not empty
     if [[ ! -z "$first_name" && ! -z "$last_name" ]]; then
         # email adress must be unique otherwise API will throws error "message":"Email has already been taken."
-        email="${first_name}.${last_name}@lecnam.net"
+
+        # si last_name a un espace alors OpenPoject ne va pas valider l'adresse email ,
+        # ex: Caroline.Von Zimmer@lecnam.net
+
+        last_name_clean="${last_name// /-}"        # remplace espaces par tirets
+        email="${first_name,,}.${last_name_clean,,}@lecnam.net"  # tout en minuscules
+
         user_payload=$(cat <<EOF
 {
   "login": "${first_name:0:1}.${last_name}",
@@ -184,10 +190,11 @@ EOF
     fi
 done < users_to_import.csv
 
-
+wc -l users_to_import.csv
+head -185 users_to_import.csv | cat -A  # Pour voir les espaces/caractères spéciaux
 ```
 
-# Add Users to Group
+# Add Users to Groups
 
 read the [API doc](https://www.openproject.org/docs/api/endpoints/groups/#update-group)
 read [pagination doc](https://www.openproject.org/docs/api/collections/)
@@ -248,6 +255,12 @@ echo "Total users retrieved: $(echo "$all_users" | jq 'length')"
 
 # Step 2: Filter users by category
 
+echo "$all_users" | jq '.[] | .firstName' | head -20
+echo "$all_users" | jq -r '.[] | .firstName' | grep -i "^msp" | wc -l
+echo "$all_users" | jq -r '.[] | .firstName' | grep -i "^msp " | wc -l
+
+# check: sed -n '36,186p' users_to_import.csv | head -20
+
 # Extract MSP users (firstName starts with 'MSP')
 msp_usr_array=$(echo "$all_users" | jq '[.[] | select(.firstName | startswith("MSP"))]')
 echo "MSP users count: $(echo "$msp_usr_array" | jq 'length')"
@@ -260,8 +273,10 @@ echo "Client users count: $(echo "$client_usr_array" | jq 'length')"
 msp_member_hrefs=$(echo "$msp_usr_array" | jq -r '.[]._links.self.href')
 msp_members_json=$(echo "$msp_member_hrefs" | jq -R '.' | jq -s 'map({"href": .})')
 
-patch_url="$API_ENDPOINT/groups/$MSP_GROUP_ID"
-echo "Patching MSP group: $patch_url" >&2
+export API_ENDPOINT_GRP="$API_HOST/api/v3/groups"
+patch_url="$API_ENDPOINT_GRP/$MSP_GROUP_ID"
+
+echo "Patching MSP group: $patch_url"
 
 msp_payload=$(jq -n --argjson members "$msp_members_json" '{
   "name": "'"$MSP_GROUP_NAME"'",
@@ -270,19 +285,19 @@ msp_payload=$(jq -n --argjson members "$msp_members_json" '{
   }
 }')
 
-echo "MSP Payload:" >&2
-echo "$msp_payload" | jq '.' >&2
+echo "MSP Payload:"
+echo "$msp_payload" | jq '.'
 
+# Add MSP users to Group MSP
 msp_response=$(curl -X PATCH -k "$patch_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$msp_payload")
-echo "Response for MSP group:" >&2
-echo "$msp_response" | jq '.' >&2
+echo "Response for MSP group:"
+echo "$msp_response" | jq '.'
 
-# Step 4: Add Client users to Client group
+# Add Client users to Client group
 client_member_hrefs=$(echo "$client_usr_array" | jq -r '.[]._links.self.href')
 client_members_json=$(echo "$client_member_hrefs" | jq -R '.' | jq -s 'map({"href": .})')
 
-patch_url="$API_ENDPOINT/groups/$CLIENT_GROUP_ID"
-echo "Patching Client group: $patch_url" >&2
+patch_url=$API_ENDPOINT_GRP/$CLIENT_GROUP_ID
 
 client_payload=$(jq -n --argjson members "$client_members_json" '{
   "name": "'"$CLIENT_GROUP_NAME"'",
@@ -291,14 +306,114 @@ client_payload=$(jq -n --argjson members "$client_members_json" '{
   }
 }')
 
-echo "Client Payload:" >&2
+echo "Client Payload:"
 echo "$client_payload" | jq '.' >&2
+echo "Response for Client group with URL: $patch_url"
 
 client_response=$(curl -X PATCH -k "$patch_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$client_payload")
-echo "Response for Client group:" >&2
-echo "$client_response" | jq '.' >&2
+echo "$client_response" | jq '.'
 
 ```
+
+
+## To Add Team members to Project
+
+Read the [API doc](https://www.openproject.org/docs/api/endpoints/projects/#update-project)
+
+Go to the [UI](http://localhost:8080/projects/stargate/members?status=all) and add MSP & Client Groups to members of the Project
+
+```sh
+export PROJECT_ID=3
+
+
+```
+
+# Set labor Cost and set budget
+
+## Set Reference Cost
+
+Go to [UI](http://localhost:8080/admin/cost_types/new)
+
+Create "MSP standard COST" with code "WU_MSP" with RATE=400€
+Create "Client standard COST" with code "WU_CLIENT" with RATE=500€
+
+## Set budget
+
+Go to the [UI](http://localhost:8080/projects/stargate/budgets/new)
+
+Read:
+- [Budget API](https://www.openproject.org/docs/api/endpoints/budgets/)
+- 
+
+## Set Working days and hours
+
+Go to [http://localhost:8080/admin/settings/working_days_and_hours](http://localhost:8080/admin/settings/working_days_and_hours)
+
+Set 8 Hours per day
+Duration format: Date and hours
+
+
+### Set Working Times constraints
+
+
+
+Read the :
+- [API doc](https://www.openproject.org/docs/api/endpoints/user-working-times/#usernonworkingtime-local-properties)
+- [nonworkingday-actions API doc](https://www.openproject.org/docs/api/endpoints/work-schedule/#nonworkingday-actions)  (not implemented)
+
+
+```sh
+export PROJECT_ID=3
+export API_HOST="http://localhost:8080"
+export API_ENDPOINT_USR="$API_HOST/api/v3/days/non_working"
+
+{
+  "_type": "NonWorkingDay",
+  "date": "2022-12-25",
+  "name": "Christmas"
+}
+
+        # Send request and capture response
+        response=$(curl -X POST -k "$API_ENDPOINT_USR" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$user_payload")
+        
+        # Log user creation result
+        # echo "Response for user $first_name $last_name: $response"
+
+```
+
+
+Check at [http://localhost:8080/admin/settings/working_days_and_hours](http://localhost:8080/admin/settings/working_days_and_hours) 
+
+Jour de l'an			01/01/2026	
+Lundi de pâques			06/04/2026	
+Fête du travail			01/05/2026	
+Le 08 Mai 45			08/05/2026	
+Jeudi de l'ascension	14/05/2026	
+Lundi de pentecôte		25/05/2026	
+Fête nationale			14/07/2026	
+Assomption			    15/08/2026	
+La Toussaint			01/11/2026	
+Armistice			    11/11/2026	
+Noël			        25/12/2026	
+
+Vacances scolaires – zone C:			
+21/02/2026	au	09/03/2026	
+18/04/2026	au	04/05/2026	
+05/07/2026	au	31/08/2026	
+17/10/2026	au	02/11/2026	
+19/12/2026	au	04/01/2027	
+
+TODO: rajouté 25 jours de vancances + 10 RTT
+
+
+
+# Troubleshoot
+
+## Get ProjectPhaseDefinition
+
+Read [API doc](https://www.openproject.org/docs/api/endpoints/project-phase-definitions/#list-project-phase-definitions)
+
+http://localhost:8080/api/v3/project_phase_definitions
 
 
 ## To remove Users from Group
@@ -338,15 +453,4 @@ echo "MSP Payload:" $data
 msp_response=$(curl -X PATCH -k "$patch_url" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$data")
 echo "Response for MSP group:" 
 echo "$msp_response" | jq '.'
-
-
-```
-
-
-## To rxxxx
-
-```sh
-
-
-export PROJECT_ID=3
 ```
