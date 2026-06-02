@@ -356,28 +356,118 @@ Duration format: Date and hours
 ### Set Working Times constraints
 
 
+Check [List personal non-working times for a user](http://localhost:8080/api/v3/users/4/non_working_times)
+
 
 Read the :
 - [API doc](https://www.openproject.org/docs/api/endpoints/user-working-times/#usernonworkingtime-local-properties)
 - [nonworkingday-actions API doc](https://www.openproject.org/docs/api/endpoints/work-schedule/#nonworkingday-actions)  (not implemented)
+- ["Create a personal non-working day for a user" API doc](https://www.openproject.org/docs/api/endpoints/user-working-times/#create-a-personal-non-working-day-for-a-user)
+
+
+/!\ IMPORTANT: The date range must not overlap with an existing non-working time record for the same user.
+
+Le fichier CSV doit avoir un newline \n à la fin !
+
+Required permissions:
+
+    Administrators can create non-working days for any user.
+    Users with the global manage_own_working_times permission can create records for themselves.
+    Users with the global manage_working_times permission can create non-working days for any user.
+Go to [http://localhost:8080/admin/roles/12/edit](http://localhost:8080/admin/roles/12/edit)
+
+Check the box for : 
+- Manage own working times: Allows users to manage their own working times, and personal non-working days. 
+- Manage working times for all users: Allows users to manage working times for all users, including personal non-working days. 
+
+Check 
+- [API doc](https://github.com/opf/openproject/blob/dev/docs/api/apiv3/paths/user_non_working_times.yml#L81)
+- [sample request](https://github.com/opf/openproject/blob/dev/docs/api/apiv3/components/schemas/non_working_day_model.yml#L35)
+
+
+/!\ IMPORTANT: the Endpoint is NOT yet implemented in v17.4.0, you can check version using the [API](http://localhost:8080/api/v3/)
 
 
 ```sh
 export PROJECT_ID=3
-export API_HOST="http://localhost:8080"
-export API_ENDPOINT_USR="$API_HOST/api/v3/days/non_working"
+export PROJECT_PROJECT_MANAGER_USR_ID=223
+export API_ENDPOINT_DAYS_NW="$API_HOST/api/v3/days/non_working"
 
+# Read user data from a CSV file
+# Format user_id;startDate;endDate dates are in ISO 8601 format (YYYY-MM-DD)
+
+
+while IFS=';' read -r user_id start_date end_date; do
+
+    nwt_id=1
+    echo "Checking USER with ID $user_id, Start Date: $start_date, End Date: $end_date"
+    # Check if fields are not empty
+    if [[ ! -z "$user_id" && ! -z "$start_date"  && ! -z "$end_date" ]]; then
+        nwt_payload=$(cat <<EOF
 {
-  "_type": "NonWorkingDay",
-  "date": "2022-12-25",
-  "name": "Christmas"
+  "startDate": "$start_date",
+  "endDate": "$end_date",
 }
+EOF
+)
+        echo "Payload for user ${user_id}: $nwt_payload"  # Log payload
+        echo "$nwt_payload" | jq '.'  # Check if valid JSON
+        echo "Non-Working Times for user ${user_id}: ${nwt_payload}"
+
+        API_ENDPOINT_USR_NWT="$API_ENDPOINT_USR/$user_id/non_working_times"
+        echo "API Endpoint: $API_ENDPOINT_USR_NWT"
+        echo ""
 
         # Send request and capture response
-        response=$(curl -X POST -k "$API_ENDPOINT_USR" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$user_payload")
+        response=$(curl -X POST -k "$API_ENDPOINT_USR_NWT" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$nwt_payload")
         
         # Log user creation result
-        # echo "Response for user $first_name $last_name: $response"
+        echo "Response for Staff holidays: $response"
+
+    else 
+        echo "CSV file has empty data user_id: $user_id" >&2
+    fi
+    nwt_id++
+done < nonworkingtimes_holidays_to_import.csv
+
+wc -l nonworkingtimes_holidays_to_import.csv
+head -10 nonworkingtimes_holidays_to_import.csv | cat -A  # Pour voir les espaces/caractères spéciaux
+
+
+
+
+
+
+
+
+
+
+# Read user data from a CSV file
+# Le fichier CSV n'a PAS de newline \n à la fin !
+while IFS=';' read -r nwd_type nwd_date nwd_name; do
+    # Check if fields are not empty
+    if [[ ! -z "$nwd_type" && ! -z "$nwd_date"  && ! -z "$nwd_name" ]]; then
+        nwd_payload=$(cat <<EOF
+{
+  "_type": "${nwd_type}",
+  "date": "${nwd_date}",
+  "name": "${nwd_name}"
+}
+EOF
+)
+        echo "NWD: ${nwd_payload}" >&2
+
+        # Send request and capture response
+        response=$(curl -X POST -k "$API_ENDPOINT_DAYS_NW" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$nwd_payload")
+        
+        # Log user creation result
+        echo "Response for Public holidays: $response" >&2
+
+    else echo "CSV file has empty data" >&2
+    fi
+done < nonworkingday_to_import.csv
+
+
 
 ```
 
