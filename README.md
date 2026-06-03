@@ -436,14 +436,8 @@ head -10 nonworkingtimes_holidays_to_import.csv | cat -A  # Pour voir les espace
 
 
 
-
-
-
-
-
-
 # Read user data from a CSV file
-# Le fichier CSV n'a PAS de newline \n à la fin !
+# Le fichier CSV n'a PAS de newline \n à la fin ! ==> il doit en avoir
 while IFS=';' read -r nwd_type nwd_date nwd_name; do
     # Check if fields are not empty
     if [[ ! -z "$nwd_type" && ! -z "$nwd_date"  && ! -z "$nwd_name" ]]; then
@@ -494,6 +488,201 @@ Vacances scolaires – zone C:
 19/12/2026	au	04/01/2027	
 
 TODO: rajouté 25 jours de vancances + 10 RTT
+
+
+# Import Work-Packages
+
+A WP can be a unit task or a Task Summary (that includes several Tasks)
+
+Read the [API doc](https://www.openproject.org/docs/api/endpoints/work-packages/#list-work-packages)
+
+
+## List WP
+
+```sh
+export API_ENDPOINT_WP="$API_HOST/api/v3/work_packages"
+
+pageSize=20
+# offset=1
+
+# Fetch the first page of users
+response=$(curl -s -X GET -k "$API_ENDPOINT_WP?offset=$offset&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
+
+# Get total number of WP from the response
+total_wp=$(echo "$response" | jq -r '.total')
+echo "Total Work Packages: $total_wp"
+
+# Calculate total pages
+total_pages=$(( (total_wp + pageSize + 1) / pageSize ))
+echo "Total pages: $total_pages"
+
+# Collect all users from all pages
+all_wp=$(
+    for (( i=1; i <= total_wp; i++ )); do
+            # les echo de debug envoient du texte vers stdout qui se retrouve 
+            # dans le pipeline jq. Jq reçoit donc du texte mélangé avec du JSON, 
+            # Il faut rediriger les echo vers stderr avec >&2 :
+            echo "Fetching page $i (offset=$i)" >&2
+
+            # Fetch the page
+            response=$(curl -s -X GET -k "$API_ENDPOINT_WP?offset=$i&pageSize=$pageSize" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json')
+            
+            # Check if we have elements in this page
+            count=$(echo "$response" | jq -r '.count')
+            if [ "$count" -eq 0 ]; then
+                echo "No more WP, stopping pagination" >&2
+                break
+            fi
+            
+            # Get total for info
+            if [ "$i" -eq 1 ]; then
+                total=$(echo "$response" | jq -r '.total')
+                echo "Total WP in API: $total" >&2
+            fi
+            
+            # Output each element (one per line)
+            echo "$response" | jq -c '._embedded.elements[]'
+        done | jq -s '.'  # Combine all elements into a single array
+)
+
+# Output the total WP retrieved
+echo "Total Work Packages retrieved: $(echo "$all_wp" | jq 'length')"
+
+
+wp_id_array=$(echo "$all_wp" | jq '[.[] | select(.firstName | startswith("MSP"))]')
+
+wp_id=$(echo "$all_wp" | jq '.[].id')
+wp_task_name=$(echo "$all_wp" | jq '.[].subject' )
+echo $wp_id | more
+echo $wp_task_name | more
+
+```
+
+## Import WP
+
+Read [API doc](https://www.openproject.org/docs/api/endpoints/work-packages/#create-work-package)
+
+```sh
+export API_ENDPOINT_WP="$API_HOST/api/v3/work_packages"
+export API_ENDPOINT_RELATIONS="$API_HOST/api/v3/relations"
+export API_ENDPOINT_PRIORITIES="$API_HOST/api/v3/priorities"
+export API_ENDPOINT_PORTFOLIO="$API_HOST/api/v3/portfolio"
+export API_ENDPOINT_STATUSES="$API_HOST/api/v3/statuses"
+export API_ENDPOINT_types="$API_HOST/api/v3/types"
+export API_ENDPOINT_VERSIONS="$API_HOST/api/v3/versions"
+
+export PROJECT_ID=3
+pageSize=20
+
+# Yopu can check projectPhase	
+# at http://localhost:8080/api/v3/project_phases/8 , ex: http://localhost:8080/api/v3/work_packages/37
+# id 5 ==> "Initiating"
+# id 6 ==> "Planning"
+# id 7 ==> Executing
+# id 8 ==> Closing
+# http://localhost:8080/api/v3/project_phase_definitions/4
+
+# Budgets: http://localhost:8080/api/v3/budgets/1
+# 1: Budget Licences
+# 2: Etude d’opportunité
+# 3: RFP
+# 4: Contractualisation
+# 5: Formations Azure - 2026
+# 6: Formations Azure - 2027
+# 7: Formations Azure - 2028
+# 8: Formations Standards - 2026
+# 9: Formations Standards - 2027
+# 10: Formations Standards - 2028
+# 11: Formation Sans Institute - 2026
+# 12: Formation Sans Institute - 2027
+# 13: Formation Sans Institute - 2028
+# 14: Coûts Infras / an - 2026
+# 15: Coûts Infras / an - 2027
+# 16: Coûts Infras / an - 2028
+# 17: Augmentation du CA
+# 18: Cost avoidance - Serveurs physiques
+# 19: Gains - Excellence Opérationnelle 
+# 20: Etude détaillée Cadrage
+# 21: Project Cost - External MSP
+# 22: Project Cost - Internal Staff
+
+# CSV file format TASK_NAME;TASK_PHASE;BUDGET_ID;ASSIGNEE_ID;TASK_TYPE;DUE_DATE;PARENT_ID;RELATION_ID;
+# Le fichier CSV doit  avoir newline \n à la fin !
+while IFS=';' read -r task_name task_phase budget_id assigned_id task_type start_date due_date parent_id relation_id; do
+    # Check if fields are not empty
+    if [[ ! -z "$task_name" && ! -z "$assigned_id"  && ! -z "$parent_id" && ! -z "$start_date" && ! -z "$due_date" ]]; then
+
+        # normalisation des dates : 2026-06-4 ==> devient 2026-06-04
+        start_date=$(date -d "$start_date" +"%Y-%m-%d")
+        due_date=$(date -d "$due_date" +"%Y-%m-%d")
+
+        wp_payload=$(cat <<EOF
+{
+  "_type": "WorkPackage",
+  "_links": {
+    "responsible": {
+      "href": "/api/v3/users/${assigned_id}"
+    },
+    "relations": {
+      "href": "/api/v3/work_packages/${relation_id}/relations"
+    },
+    "assignee": {
+      "href": "/api/v3/users/${assigned_id}"
+    },
+    "priority": {
+      "href": "/api/v3/priorities/8"
+    },
+    "project": {
+      "href": "/api/v3/projects/${PROJECT_ID}"
+    },
+    "budget": {
+      "href": "/api/v3/budgets/${budget_id}"
+    },
+    "projectPhase": {
+      "href": "/api/v3/project_phases/${task_phase}"
+    }, 
+    "status": {
+      "href": "/api/v3/statuses/1"
+    },
+    "type": {
+      "href": "/api/v3/types/${task_type}"
+    },
+    "parent": {
+      "href": "/api/v3/work_packages/${parent_id}"
+    }
+  },
+  "subject": "${task_name}",
+  "description": {},
+  "scheduleManually": true,
+  "readonly": false,
+  "startDate": "${start_date}",
+  "dueDate": "${due_date}",
+  "estimatedTime": "PT8H",
+  "percentageDone": 0,
+  "customField1": "Foo",
+  "customField2": 42
+}
+EOF
+)
+        echo "Work-Package: ${wp_payload}" >&2
+
+        # Send request and capture response
+        response=$(curl -X POST -k "$API_ENDPOINT_WP" -H "Authorization: Bearer ${API_TOKEN}" -H 'Content-Type: application/json' -d "$wp_payload")
+        
+        # echo "Response for Work Packages: $response" >&2
+        # echo ${budget_id} >&2
+        # echo ""
+
+    else echo "CSV file has empty data" >&2
+    fi
+done < wp_to_import.csv
+
+```
+
+
+
+
+
 
 
 
