@@ -1,0 +1,1392 @@
+[
+  {
+    "_type": "User",
+    "id": 251,
+    "name": "Mathilde Goldeneye",
+    "createdAt": "2026-06-02T08:02:07.472Z",
+    "updatedAt": "2026-06-02T08:02:07.472Z",
+    "login": "M.Goldeneye",
+    "admin": false,
+    "firstName": "Mathilde",
+    "lastName": "Goldeneye",
+    "email": "Mathilde.Goldeneye@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/a203624e3146510b470c673a7f74d30d?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/251",
+        "title": "Mathilde Goldeneye"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22251%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/251",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/251",
+        "title": "Update M.Goldeneye",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/251/lock",
+        "title": "Set lock on M.Goldeneye",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/251",
+        "title": "Delete M.Goldeneye",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 250,
+    "name": "Jean-Claude Convenant",
+    "createdAt": "2026-06-02T08:02:07.281Z",
+    "updatedAt": "2026-06-02T08:02:07.281Z",
+    "login": "J.Convenant",
+    "admin": false,
+    "firstName": "Jean-Claude",
+    "lastName": "Convenant",
+    "email": "Jean-Claude.Convenant@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/a7c603d1a11d2ce200ec409ca1ca352b?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/250",
+        "title": "Jean-Claude Convenant"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22250%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/250",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/250",
+        "title": "Update J.Convenant",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/250/lock",
+        "title": "Set lock on J.Convenant",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/250",
+        "title": "Delete J.Convenant",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 249,
+    "name": "Tony Fowler",
+    "createdAt": "2026-06-02T08:02:07.087Z",
+    "updatedAt": "2026-06-02T08:02:07.087Z",
+    "login": "T.Fowler",
+    "admin": false,
+    "firstName": "Tony",
+    "lastName": "Fowler",
+    "email": "Tony.Fowler@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/c5f688af0834a9f194f692a2843e16cf?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/249",
+        "title": "Tony Fowler"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22249%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/249",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/249",
+        "title": "Update T.Fowler",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/249/lock",
+        "title": "Set lock on T.Fowler",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/249",
+        "title": "Delete T.Fowler",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 248,
+    "name": "Hervé Dumont",
+    "createdAt": "2026-06-02T08:02:06.892Z",
+    "updatedAt": "2026-06-02T08:02:06.892Z",
+    "login": "H.Dumont",
+    "admin": false,
+    "firstName": "Hervé",
+    "lastName": "Dumont",
+    "email": "Hervé.Dumont@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/cc93db6f5c830dd458158bd91d4f0e40?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/248",
+        "title": "Hervé Dumont"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22248%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/248",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/248",
+        "title": "Update H.Dumont",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/248/lock",
+        "title": "Set lock on H.Dumont",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/248",
+        "title": "Delete H.Dumont",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 247,
+    "name": "Célia Tombola",
+    "createdAt": "2026-06-02T08:02:06.690Z",
+    "updatedAt": "2026-06-02T08:02:06.690Z",
+    "login": "C.Tombola",
+    "admin": false,
+    "firstName": "Célia",
+    "lastName": "Tombola",
+    "email": "Célia.Tombola@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/0d981ed48d49b4ad689327953cf6babc?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/247",
+        "title": "Célia Tombola"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22247%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/247",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/247",
+        "title": "Update C.Tombola",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/247/lock",
+        "title": "Set lock on C.Tombola",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/247",
+        "title": "Delete C.Tombola",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 246,
+    "name": "Frédéric Durac",
+    "createdAt": "2026-06-02T08:02:06.473Z",
+    "updatedAt": "2026-06-02T08:02:06.473Z",
+    "login": "F.Durac",
+    "admin": false,
+    "firstName": "Frédéric",
+    "lastName": "Durac",
+    "email": "Frédéric.Durac@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/cae78a505c48807e81f4de510b650dfb?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/246",
+        "title": "Frédéric Durac"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22246%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/246",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/246",
+        "title": "Update F.Durac",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/246/lock",
+        "title": "Set lock on F.Durac",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/246",
+        "title": "Delete F.Durac",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 245,
+    "name": "Alex Tur",
+    "createdAt": "2026-06-02T08:02:06.168Z",
+    "updatedAt": "2026-06-02T08:02:06.168Z",
+    "login": "A.Tur",
+    "admin": false,
+    "firstName": "Alex",
+    "lastName": "Tur",
+    "email": "Alex.Tur@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/4d4735f36faebcaa2d77b2fae1218425?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/245",
+        "title": "Alex Tur"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22245%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/245",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/245",
+        "title": "Update A.Tur",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/245/lock",
+        "title": "Set lock on A.Tur",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/245",
+        "title": "Delete A.Tur",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 244,
+    "name": "Xavier Sezarius",
+    "createdAt": "2026-06-02T08:02:05.936Z",
+    "updatedAt": "2026-06-02T08:02:05.936Z",
+    "login": "X.Sezarius",
+    "admin": false,
+    "firstName": "Xavier",
+    "lastName": "Sezarius",
+    "email": "Xavier.Sezarius@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/7b583c77c0697e7a16486ac79612fcbe?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/244",
+        "title": "Xavier Sezarius"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22244%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/244",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/244",
+        "title": "Update X.Sezarius",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/244/lock",
+        "title": "Set lock on X.Sezarius",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/244",
+        "title": "Delete X.Sezarius",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 243,
+    "name": "Sylvie Latouche",
+    "createdAt": "2026-06-02T08:02:05.720Z",
+    "updatedAt": "2026-06-02T08:02:05.720Z",
+    "login": "S.Latouche",
+    "admin": false,
+    "firstName": "Sylvie",
+    "lastName": "Latouche",
+    "email": "Sylvie.Latouche@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/1adcb45baae69baaf286a210535ad7b5?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/243",
+        "title": "Sylvie Latouche"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22243%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/243",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/243",
+        "title": "Update S.Latouche",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/243/lock",
+        "title": "Set lock on S.Latouche",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/243",
+        "title": "Delete S.Latouche",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 242,
+    "name": "Charles Lescure",
+    "createdAt": "2026-06-02T08:02:05.499Z",
+    "updatedAt": "2026-06-02T08:02:05.499Z",
+    "login": "C.Lescure",
+    "admin": false,
+    "firstName": "Charles",
+    "lastName": "Lescure",
+    "email": "Charles.Lescure@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/b70aa694b5fc899f77033fc6ad05228e?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/242",
+        "title": "Charles Lescure"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22242%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/242",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/242",
+        "title": "Update C.Lescure",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/242/lock",
+        "title": "Set lock on C.Lescure",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/242",
+        "title": "Delete C.Lescure",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 241,
+    "name": "Julius Touroul",
+    "createdAt": "2026-06-02T08:02:05.283Z",
+    "updatedAt": "2026-06-02T08:02:05.283Z",
+    "login": "J.Touroul",
+    "admin": false,
+    "firstName": "Julius",
+    "lastName": "Touroul",
+    "email": "Julius.Touroul@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/44036f284820bf7ace5efa47b3952a0d?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/241",
+        "title": "Julius Touroul"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22241%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/241",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/241",
+        "title": "Update J.Touroul",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/241/lock",
+        "title": "Set lock on J.Touroul",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/241",
+        "title": "Delete J.Touroul",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 240,
+    "name": "Albert Allgood",
+    "createdAt": "2026-06-02T08:02:05.011Z",
+    "updatedAt": "2026-06-02T08:02:05.011Z",
+    "login": "A.Allgood",
+    "admin": false,
+    "firstName": "Albert",
+    "lastName": "Allgood",
+    "email": "Albert.Allgood@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/5ed7a8339117f43c31a3727959163cd9?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/240",
+        "title": "Albert Allgood"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22240%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/240",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/240",
+        "title": "Update A.Allgood",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/240/lock",
+        "title": "Set lock on A.Allgood",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/240",
+        "title": "Delete A.Allgood",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 239,
+    "name": "Dominique Peudsou",
+    "createdAt": "2026-06-02T08:02:04.762Z",
+    "updatedAt": "2026-06-02T08:02:04.762Z",
+    "login": "D.Peudsou",
+    "admin": false,
+    "firstName": "Dominique",
+    "lastName": "Peudsou",
+    "email": "Dominique.Peudsou@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/db6b5ac3a3e03ebe0fe431e8028181d9?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/239",
+        "title": "Dominique Peudsou"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22239%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/239",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/239",
+        "title": "Update D.Peudsou",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/239/lock",
+        "title": "Set lock on D.Peudsou",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/239",
+        "title": "Delete D.Peudsou",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 238,
+    "name": "Didier Taleure",
+    "createdAt": "2026-06-02T08:02:04.475Z",
+    "updatedAt": "2026-06-02T08:02:04.475Z",
+    "login": "D.Taleure",
+    "admin": false,
+    "firstName": "Didier",
+    "lastName": "Taleure",
+    "email": "Didier.Taleure@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/ce8dba310b5391af30e01a2e97db4c60?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/238",
+        "title": "Didier Taleure"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22238%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/238",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/238",
+        "title": "Update D.Taleure",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/238/lock",
+        "title": "Set lock on D.Taleure",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/238",
+        "title": "Delete D.Taleure",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 237,
+    "name": "Archibald Turing",
+    "createdAt": "2026-06-02T08:02:04.251Z",
+    "updatedAt": "2026-06-02T08:02:04.251Z",
+    "login": "A.Turing",
+    "admin": false,
+    "firstName": "Archibald",
+    "lastName": "Turing",
+    "email": "Archibald.Turing@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/ea40c6a031dea18403f89ab33df7cd07?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/237",
+        "title": "Archibald Turing"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22237%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/237",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/237",
+        "title": "Update A.Turing",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/237/lock",
+        "title": "Set lock on A.Turing",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/237",
+        "title": "Delete A.Turing",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 236,
+    "name": "Pierre Langlois",
+    "createdAt": "2026-06-02T08:02:03.957Z",
+    "updatedAt": "2026-06-02T08:02:03.957Z",
+    "login": "P.Langlois",
+    "admin": false,
+    "firstName": "Pierre",
+    "lastName": "Langlois",
+    "email": "Pierre.Langlois@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/98e1a05ce9c3fff60e353e8bd2794bf6?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/236",
+        "title": "Pierre Langlois"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22236%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/236",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/236",
+        "title": "Update P.Langlois",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/236/lock",
+        "title": "Set lock on P.Langlois",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/236",
+        "title": "Delete P.Langlois",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 235,
+    "name": "Sean Gramm",
+    "createdAt": "2026-06-02T08:02:03.603Z",
+    "updatedAt": "2026-06-02T08:02:03.603Z",
+    "login": "S.Gramm",
+    "admin": false,
+    "firstName": "Sean",
+    "lastName": "Gramm",
+    "email": "Sean.Gramm@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/dce5d0cbbca82f0e57eade395f0109aa?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/235",
+        "title": "Sean Gramm"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22235%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/235",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/235",
+        "title": "Update S.Gramm",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/235/lock",
+        "title": "Set lock on S.Gramm",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/235",
+        "title": "Delete S.Gramm",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 234,
+    "name": "Daniel Parano",
+    "createdAt": "2026-06-02T08:02:03.361Z",
+    "updatedAt": "2026-06-02T08:02:03.361Z",
+    "login": "D.Parano",
+    "admin": false,
+    "firstName": "Daniel",
+    "lastName": "Parano",
+    "email": "Daniel.Parano@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/db10a2dde3841d1084471e21146e9646?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/234",
+        "title": "Daniel Parano"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22234%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/234",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/234",
+        "title": "Update D.Parano",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/234/lock",
+        "title": "Set lock on D.Parano",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/234",
+        "title": "Delete D.Parano",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 233,
+    "name": "Fanny Formatec",
+    "createdAt": "2026-06-02T08:02:03.158Z",
+    "updatedAt": "2026-06-02T08:02:03.158Z",
+    "login": "F.Formatec",
+    "admin": false,
+    "firstName": "Fanny",
+    "lastName": "Formatec",
+    "email": "Fanny.Formatec@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/1dd9af56edda6abbb7da9ef52d2775fd?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/233",
+        "title": "Fanny Formatec"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22233%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/233",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/233",
+        "title": "Update F.Formatec",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/233/lock",
+        "title": "Set lock on F.Formatec",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/233",
+        "title": "Delete F.Formatec",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 232,
+    "name": "Oleg Verisur",
+    "createdAt": "2026-06-02T08:02:02.852Z",
+    "updatedAt": "2026-06-02T08:02:02.852Z",
+    "login": "O.Verisur",
+    "admin": false,
+    "firstName": "Oleg",
+    "lastName": "Verisur",
+    "email": "Oleg.Verisur@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/92a940e90fc607e59e1fba8abae685dc?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/232",
+        "title": "Oleg Verisur"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22232%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/232",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/232",
+        "title": "Update O.Verisur",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/232/lock",
+        "title": "Set lock on O.Verisur",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/232",
+        "title": "Delete O.Verisur",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 231,
+    "name": "Yvon Talisman",
+    "createdAt": "2026-06-02T08:02:02.662Z",
+    "updatedAt": "2026-06-02T08:02:02.662Z",
+    "login": "Y.Talisman",
+    "admin": false,
+    "firstName": "Yvon",
+    "lastName": "Talisman",
+    "email": "Yvon.Talisman@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/6e055f3f0a6743ca0a322c2509dd90d9?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/231",
+        "title": "Yvon Talisman"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22231%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/231",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/231",
+        "title": "Update Y.Talisman",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/231/lock",
+        "title": "Set lock on Y.Talisman",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/231",
+        "title": "Delete Y.Talisman",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 230,
+    "name": "Greg Itelio",
+    "createdAt": "2026-06-02T08:02:02.475Z",
+    "updatedAt": "2026-06-02T08:02:02.475Z",
+    "login": "G.Itelio",
+    "admin": false,
+    "firstName": "Greg",
+    "lastName": "Itelio",
+    "email": "Greg.Itelio@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/49ecbdd428147e007db96f33dd95ac5b?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/230",
+        "title": "Greg Itelio"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22230%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/230",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/230",
+        "title": "Update G.Itelio",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/230/lock",
+        "title": "Set lock on G.Itelio",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/230",
+        "title": "Delete G.Itelio",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 229,
+    "name": "Oscar Provost",
+    "createdAt": "2026-06-02T08:02:02.289Z",
+    "updatedAt": "2026-06-02T08:02:02.289Z",
+    "login": "O.Provost",
+    "admin": false,
+    "firstName": "Oscar",
+    "lastName": "Provost",
+    "email": "Oscar.Provost@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/c73d7c71019ee4d135e1df6bb4c00eb2?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/229",
+        "title": "Oscar Provost"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22229%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/229",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/229",
+        "title": "Update O.Provost",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/229/lock",
+        "title": "Set lock on O.Provost",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/229",
+        "title": "Delete O.Provost",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 228,
+    "name": "Didier Farceur",
+    "createdAt": "2026-06-02T08:02:02.098Z",
+    "updatedAt": "2026-06-02T08:02:02.098Z",
+    "login": "D.Farceur",
+    "admin": false,
+    "firstName": "Didier",
+    "lastName": "Farceur",
+    "email": "Didier.Farceur@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/d098a5e765cbe0f05b5e954f3d9ca281?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/228",
+        "title": "Didier Farceur"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22228%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/228",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/228",
+        "title": "Update D.Farceur",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/228/lock",
+        "title": "Set lock on D.Farceur",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/228",
+        "title": "Delete D.Farceur",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 227,
+    "name": "Hector Sékassé",
+    "createdAt": "2026-06-02T08:02:01.909Z",
+    "updatedAt": "2026-06-02T08:02:01.909Z",
+    "login": "H.Sékassé",
+    "admin": false,
+    "firstName": "Hector",
+    "lastName": "Sékassé",
+    "email": "Hector.Sékassé@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/44186a33ec2a98e0e429a647de8849dc?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/227",
+        "title": "Hector Sékassé"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22227%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/227",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/227",
+        "title": "Update H.Sékassé",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/227/lock",
+        "title": "Set lock on H.Sékassé",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/227",
+        "title": "Delete H.Sékassé",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 226,
+    "name": "Tony Fiasco",
+    "createdAt": "2026-06-02T08:02:01.720Z",
+    "updatedAt": "2026-06-02T08:02:01.720Z",
+    "login": "T.Fiasco",
+    "admin": false,
+    "firstName": "Tony",
+    "lastName": "Fiasco",
+    "email": "Tony.Fiasco@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/a62ab294e0d55ae35ca7e0b8d0cb819b?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/226",
+        "title": "Tony Fiasco"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22226%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/226",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/226",
+        "title": "Update T.Fiasco",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/226/lock",
+        "title": "Set lock on T.Fiasco",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/226",
+        "title": "Delete T.Fiasco",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 225,
+    "name": "Netanel Woo",
+    "createdAt": "2026-06-02T08:02:01.529Z",
+    "updatedAt": "2026-06-02T08:02:01.529Z",
+    "login": "N.Woo",
+    "admin": false,
+    "firstName": "Netanel",
+    "lastName": "Woo",
+    "email": "Netanel.Woo@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/f4e94edd967d31935c9caefd576596af?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/225",
+        "title": "Netanel Woo"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22225%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/225",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/225",
+        "title": "Update N.Woo",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/225/lock",
+        "title": "Set lock on N.Woo",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/225",
+        "title": "Delete N.Woo",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 224,
+    "name": "Teddy Ohara",
+    "createdAt": "2026-06-02T08:02:01.342Z",
+    "updatedAt": "2026-06-02T08:02:01.342Z",
+    "login": "T.Ohara",
+    "admin": false,
+    "firstName": "Teddy",
+    "lastName": "Ohara",
+    "email": "Teddy.Ohara@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/a1927831d7aed7c00e229bc75f6d5ae2?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/224",
+        "title": "Teddy Ohara"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22224%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/224",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/224",
+        "title": "Update T.Ohara",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/224/lock",
+        "title": "Set lock on T.Ohara",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/224",
+        "title": "Delete T.Ohara",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 223,
+    "name": "Steve P",
+    "createdAt": "2026-06-02T08:02:01.154Z",
+    "updatedAt": "2026-06-02T08:02:01.154Z",
+    "login": "S.P",
+    "admin": false,
+    "firstName": "Steve",
+    "lastName": "P",
+    "email": "Steve.P@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/fe6c7c94e6ab828f3f33bfccb6169284?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/223",
+        "title": "Steve P"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22223%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/223",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/223",
+        "title": "Update S.P",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/223/lock",
+        "title": "Set lock on S.P",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/223",
+        "title": "Delete S.P",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 222,
+    "name": "Mike Turnright",
+    "createdAt": "2026-06-02T08:02:00.923Z",
+    "updatedAt": "2026-06-02T08:02:00.923Z",
+    "login": "M.Turnright",
+    "admin": false,
+    "firstName": "Mike",
+    "lastName": "Turnright",
+    "email": "Mike.Turnright@lecnam.net",
+    "avatar": "http://gravatar.com/avatar/d3b2c4c3c5d5b3a1428d559b2ad423f7?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/222",
+        "title": "Mike Turnright"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%22222%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/222",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/222",
+        "title": "Update M.Turnright",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/222/lock",
+        "title": "Set lock on M.Turnright",
+        "method": "post"
+      },
+      "delete": {
+        "href": "/api/v3/users/222",
+        "title": "Delete M.Turnright",
+        "method": "delete"
+      }
+    }
+  },
+  {
+    "_type": "User",
+    "id": 4,
+    "name": "OpenProject Admin",
+    "createdAt": "2026-06-01T19:58:05.226Z",
+    "updatedAt": "2026-06-01T20:35:13.942Z",
+    "login": "admin",
+    "admin": true,
+    "firstName": "OpenProject",
+    "lastName": "Admin",
+    "email": "brest@westpoint-bravo.bzh",
+    "avatar": "http://gravatar.com/avatar/5404813142607b1c0135bd4826d1ae54?default=404&secure=false",
+    "status": "active",
+    "identityUrl": null,
+    "language": "en",
+    "_links": {
+      "self": {
+        "href": "/api/v3/users/4",
+        "title": "OpenProject Admin"
+      },
+      "memberships": {
+        "href": "/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%5D%7D%7D%5D",
+        "title": "Memberships"
+      },
+      "showUser": {
+        "href": "/users/4",
+        "type": "text/html"
+      },
+      "updateImmediately": {
+        "href": "/api/v3/users/4",
+        "title": "Update admin",
+        "method": "patch"
+      },
+      "lock": {
+        "href": "/api/v3/users/4/lock",
+        "title": "Set lock on admin",
+        "method": "post"
+      }
+    }
+  }
+]

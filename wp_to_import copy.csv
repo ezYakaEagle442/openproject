@@ -1,10 +1,6 @@
 TASK_NAME;TASK_PHASE;BUDGET_ID;ASSIGNEE_ID;TASK_TYPE;DUE_DATE;PARENT_ID;RELATION_ID;
 
 Test Task from API;1;22;223;1;2026-06-01;2026-06-4;37;48;
-duration ?
-Predecessor ?
-
-
 HLD - Key Vault;
 LLD -
 Impl-IaC -  

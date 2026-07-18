@@ -587,10 +587,13 @@ pageSize=20
 # 2: Etude d’opportunité
 # 3: RFP
 # 4: Contractualisation
+
 # 5: Formations Azure - 2026
 # 6: Formations Azure - 2027
 # 7: Formations Azure - 2028
+
 # 8: Formations Standards - 2026
+
 # 9: Formations Standards - 2027
 # 10: Formations Standards - 2028
 # 11: Formation Sans Institute - 2026
@@ -599,12 +602,20 @@ pageSize=20
 # 14: Coûts Infras / an - 2026
 # 15: Coûts Infras / an - 2027
 # 16: Coûts Infras / an - 2028
+
 # 17: Augmentation du CA
 # 18: Cost avoidance - Serveurs physiques
 # 19: Gains - Excellence Opérationnelle 
 # 20: Etude détaillée Cadrage
 # 21: Project Cost - External MSP
 # 22: Project Cost - Internal Staff
+# 23: Pilotage
+
+# Estimation de charges: 30 workload * 60 jours hommes = 1800 J/H ==> ~ 7M€
+# HLD: 5 J/H par dossier * 30 workload / 15 resopurces MSP ==> durée: 10 jours
+# LLD: 15 J/H par dossier * 30 workload / 15 resopurces MSP ==> durée: 30 jours
+# IaC: 25 J/H par dossier * 30 workload / 15 resopurces MSP ==> durée: 50 jours
+
 
 # CSV file format TASK_NAME;TASK_PHASE;BUDGET_ID;ASSIGNEE_ID;TASK_TYPE;DUE_DATE;PARENT_ID;RELATION_ID;
 # Le fichier CSV doit  avoir newline \n à la fin !
@@ -693,6 +704,47 @@ done < wp_to_import.csv
 Read [API doc](https://www.openproject.org/docs/api/endpoints/project-phase-definitions/#list-project-phase-definitions)
 
 http://localhost:8080/api/v3/project_phase_definitions
+
+
+## BackUp / Restore
+
+Read
+- [https://www.openproject.org/docs/installation-and-operations/operation/backing-up/#all-in-one-container](https://www.openproject.org/docs/installation-and-operations/operation/backing-up/#all-in-one-container)
+- [https://www.openproject.org/docs/installation-and-operations/operation/restoring/#using-the-all-in-one-container](https://www.openproject.org/docs/installation-and-operations/operation/restoring/#using-the-all-in-one-container)
+
+```sh
+export OP_CONTAINER_NAME=`docker ps | grep openproject` | head -1
+OP_CONTAINER_NAME="232f06febc1c"
+
+# Test
+docker exec -it $OP_CONTAINER_NAME ls
+
+# BackUp
+docker exec -it $OP_CONTAINER_NAME su - postgres -c 'pg_dump -d openproject -x -O' > openproject.sql
+ls -al openproject.sql
+cat openproject.sql | head -100
+
+# Restore
+docker run --rm -v /var/lib/openproject/pgdata:/var/openproject/pgdata -it openproject/openproject:17
+docker run --rm -d --name postgres -v /var/lib/openproject/pgdata:/var/lib/postgresql/data postgres:13
+
+# Once the container is ready you can copy your SQL dump onto it and start psql.
+docker cp openproject.sql postgres:/
+docker exec -it postgres psql -U postgres
+
+# In psql you then restore dump like this:
+DROP DATABASE openproject;
+CREATE DATABASE openproject OWNER openproject;
+
+\c openproject
+\i openproject.sql
+
+# Once this has finished you can quit psql (using \q) and the container (exit).
+
+chown -R 102:102 /var/lib/openproject/pgdata
+
+
+```
 
 
 ## To remove Users from Group
